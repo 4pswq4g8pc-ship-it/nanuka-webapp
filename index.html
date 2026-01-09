@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>НАНУКА</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0F4A3C;
+      color: #fff;
+      padding: 16px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .card {
+      background: #ffffff;
+      color: #000;
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .price {
+      color: #6DBE45;
+      font-weight: bold;
+    }
+    button {
+      background: #6DBE45;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🥬 НАНУКА</h1>
+
+<div class="card">
+  <b>Яблоко</b><br>
+  <span class="price">120 ₽</span><br><br>
+  <button onclick="add('Яблоко')">Добавить</button>
+</div>
+
+<div class="card">
+  <b>Авокадо</b><br>
+  <span class="price">250 ₽</span><br><br>
+  <button onclick="add('Авокадо')">Добавить</button>
+</div>
+
+<button onclick="checkout()">🛒 Оформить заказ</button>
+
+<script>
+  const tg = window.Telegram.WebApp;
+  let cart = [];
+
+  function add(item) {
+    cart.push(item);
+    tg.showAlert(item + " добавлен");
+  }
+
+  function checkout() {
+    tg.sendData(JSON.stringify(cart));
+    tg.close();
+  }
+</script>
+
+</body>
+</html>
